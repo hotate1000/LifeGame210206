@@ -17,7 +17,9 @@ main {
     margin-top : 50px;  
     min-width  : 600px;
 }
-
+#blocks {
+    margin     : 0 auto;
+}
 .main_butons {
     margin-top : 20px;
     text-align : center;
@@ -31,4 +33,22 @@ main {
 .main_butons>button:hover {
     transition         : 0.3s;
     background-color   : rgb(180, 180, 180);
+}
+table {
+    height           : 600px;
+    width            :  600px;
+    border           : solid 1px;
+    border-collapse  : collapse;
+}
+tr {
+}
+td {
+    border           : solid 1px;
+    background-color : white;
+}
+td.alive {
+    background-color   : black;
+}
+td.death {
+    background-color   : white;
 }
