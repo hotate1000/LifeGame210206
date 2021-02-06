@@ -1,11 +1,22 @@
 'use strict';
 
 //ブロックの量を指定
-const BLOCK_WIDTH_AMOUNT  = 40;
-const BLOCK_HEIGHT_AMOUNT = 40;
+const BLOCK_WIDTH_AMOUNT  = 30;
+const BLOCK_HEIGHT_AMOUNT = 30;
 //次世代の生死判定用
 let geneneration = [];
+let timer;
 main();
+
+//次世代移動用
+function next() {
+  clickNextButton();
+  judgmentLifeOrDeath(); 
+}
+// let next = setInterval(function() {
+// },500);
+
+
 
 // 実行用
 function main() {
@@ -15,24 +26,24 @@ function main() {
   
   //進むボタン
   $('#next').on('click', function() {
-    clickNextButton();
-    judgmentLifeOrDeath(); 
-    console.log("a");
+    next();
   });
+  //自動ボタン
+  $('#automatic').on('click', function() {
+    timer = setInterval(function() { 
+      next();
+    },500);
+    $('#blocks>tr>td').off('click');
+  });
+  //停止ボタン
+  $('#stop').on('click', function() {
+    clearInterval(timer);
+    clickChangeBlock();
+  })
   //削除ボタン
   $('#reset').on('click', function() {
+    clearInterval(timer);
     clickResetButton();
-  });
-  
-
-
-  $('#return').on('click', function() {
-    for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
-      for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
-        console.log(geneneration[y][x]);
-        
-      }
-    }
   });
 }
 
