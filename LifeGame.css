@@ -1,54 +1,55 @@
 *{
-    box-sizing : border-box;
+  box-sizing       : border-box;
 }
 
 body {
-    margin     : 0 !important;
+  margin     : 0 !important;
 }
 
 header {
-    width      : 100%;
-    min-width  : 700px;
-    height     : 120px;
-    background : linear-gradient( rgb(0, 0, 0), rgb(180, 180, 180));
+  width            : 100%;
+  min-width        : 700px;
+  height           : 120px;
+  background       : linear-gradient( rgb(0, 0, 0), rgb(180, 180, 180));
 }
 
 main {
-    margin-top : 50px;  
-    min-width  : 700px;
+  margin-top       : 50px;  
+  min-width        : 700px;
 }
 #blocks {
-    margin     : 0 auto;
+  margin           : 0 auto;
 }
 .main_butons {
-    margin-top : 20px;
-    text-align : center;
+  margin-top       : 20px;
+  text-align       : center;
 }
-.main_butons>button {
-    cursor     : pointer;
-    margin     : 0 5px;
-    padding    : 1px 10px;
-    font-size  : 15px;
+  .main_butons>button {
+  cursor           : pointer;
+  margin           : 0 5px;
+  padding          : 1px 10px;
+  font-size        : 15px;
+  background-color : rgb(230, 230, 230);
+  border-radius    : 4px;
+  outline          :none;
 }
 .main_butons>button:hover {
-    transition         : 0.3s;
-    background-color   : rgb(180, 180, 180);
+  transition       : 0.4s;
+  background-color : rgb(146, 230, 255);
 }
 table {
-    height           : 650px;
-    width            : 650px;
-    border           : solid 1px;
-    border-collapse  : collapse;
-}
-tr {
+  height           : 650px;
+  width            : 650px;
+  border           : solid 1px;
+  border-collapse  : collapse;
 }
 td {
-    border           : solid 1px;
-    background-color : white;
+  border           : solid 1px;
+  background-color : white;
 }
 td.alive {
-    background-color   : black;
+  background-color : black;
 }
 td.death {
-    background-color   : white;
+  background-color : white;
 }
