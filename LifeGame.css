@@ -12,7 +12,14 @@ header {
   height           : 120px;
   background       : linear-gradient( rgb(0, 0, 0), rgb(180, 180, 180));
 }
-
+.tatle {
+  display          : flex;
+  justify-content  : center;
+}
+.tatle_img {
+  height           : 90px;  
+  margin-top       : 12px;
+}
 main {
   margin-top       : 50px;  
   min-width        : 700px;
@@ -28,7 +35,7 @@ main {
   cursor           : pointer;
   margin           : 0 5px;
   padding          : 1px 10px;
-  font-size        : 15px;
+  font-size        : 17px;
   background-color : rgb(230, 230, 230);
   border-radius    : 4px;
   outline          :none;
@@ -36,6 +43,11 @@ main {
 .main_butons>button:hover {
   transition       : 0.4s;
   background-color : rgb(146, 230, 255);
+}
+#main_generation {
+  display          : inline-block;
+  margin-left      : 100px;
+  font-size        : 20px;
 }
 table {
   height           : 650px;
@@ -45,11 +57,5 @@ table {
 }
 td {
   border           : solid 1px;
-  background-color : white;
-}
-td.alive {
-  background-color : black;
-}
-td.death {
   background-color : white;
 }

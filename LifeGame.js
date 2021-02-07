@@ -8,6 +8,12 @@ const BLOCK_HEIGHT_AMOUNT = 30;
 let generation = [];
 //自動用
 let timer;
+let count = 0;
+let generationCount = 1;
+
+function a() {
+  $('#main_generation').html(generationCount + "世代目");
+}
 
 //ブロックの描画
 function drawBlocks() {
@@ -40,9 +46,11 @@ function clickChangeBlock() {
 function clickNextButton() {
   decideNextBlockColor();
   drawBlocksColor(); 
+  generationCount++;
+  a();
 }
 
-//ブロック色判定用の準備
+//世代変更時のブロック色判定用の準備
 function preparationBlockColor() {
   for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
     let blockY = [];
@@ -58,10 +66,10 @@ function preparationBlockColor() {
 function decideNextBlockColor() {
   for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
     for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
-      if($( "#" + x + "-" + y ).css("background-color") == "rgb(255, 255, 255)"){
+      if($( '#' + x + '-' + y ).css("background-color") == "rgb(255, 255, 255)"){
         judgmentWhiteBlockColor(x,y);
       }
-      else if($( "#" + x + "-" + y ).css("background-color") == "rgb(0, 0, 0)"){
+      else if($( '#' + x + '-' + y ).css("background-color") == "rgb(0, 0, 0)"){
         judgmentBlackBlockColor(x,y);
       }
     }
@@ -70,78 +78,79 @@ function decideNextBlockColor() {
 
 //白ブロック、次の世代のブロック色決定
 function judgmentWhiteBlockColor(x,y) {
-  let count = 0;
-  if($( "#" + (x - 1) + "-" + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
+  // let count = 0;
+  if($( '#' + (x - 1) + '-' + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x) + "-" + (y - 1)     ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x) + '-' + (y - 1)     ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x + 1) + "-" + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x + 1) + '-' + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x - 1) + "-" + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x - 1) + '-' + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x + 1) + "-" + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x + 1) + '-' + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x - 1) + "-" + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x - 1) + '-' + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x) + "-" + (y + 1)     ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x) + '-' + (y + 1)     ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x + 1) + "-" + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x + 1) + '-' + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
   if(count == 3) {
     generation[y][x] = true;
   }
+  count = 0;
 }
 
 //黒ブロック、次の世代のブロック色決定
 function judgmentBlackBlockColor(x,y) {
-  let count = 0;
-  if($( "#" + (x - 1) + "-" + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
+  // let count = 0;
+  if($( '#' + (x - 1) + '-' + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x) + "-" + (y - 1)     ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x) + '-' + (y - 1)     ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x + 1) + "-" + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x + 1) + '-' + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x - 1) + "-" + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x - 1) + '-' + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x + 1) + "-" + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x + 1) + '-' + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x - 1) + "-" + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x - 1) + '-' + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x) + "-" + (y + 1)     ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x) + '-' + (y + 1)     ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if($( "#" + (x + 1) + "-" + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
+  if($( '#' + (x + 1) + '-' + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
   if(count == 3 || count == 2) {
     generation[y][x] = true;
   }
+  count = 0;
 }
 
 // 次の世代のブロック色を塗る
 function drawBlocksColor() {
   for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
-    
     for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
         if(generation[y][x] == true) {
-          document.getElementById(x + "-" + y).style.backgroundColor='rgb(0, 0, 0)';
+          document.getElementById(x + '-' + y).style.backgroundColor="rgb(0, 0, 0)";
         }
         else {
-          document.getElementById(x + "-" + y).style.backgroundColor='rgb(255, 255, 255)';
+          document.getElementById(x + '-' + y).style.backgroundColor="rgb(255, 255, 255)";
         }
         generation[y][x] = false;
     }
@@ -151,5 +160,33 @@ function drawBlocksColor() {
 //自動ボタン選択 → 別ボタン選択、ボタン機能復旧
 function restorationButton() {
   document.getElementById('next').disabled = false;
+  document.getElementById('automatic').disabled = false;
   $('#automatic').css("background-color","rgb(230, 230, 230)");
+}
+
+//リセットボタン
+function clickResetButton() {
+  for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
+    for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
+      document.getElementById(x + '-' + y).style.backgroundColor="rgb(255, 255, 255)";
+    }
+  }
+}
+
+//自動ボタン選択時、ブロックのクリックを不可にする
+function cssPointerEventsNone() {
+  for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
+    for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
+      document.getElementById(x + '-' + y).style.pointerEvents="none";
+    }
+  }
+}
+
+//自動ボタン選択後、ブロックのクリックを可能にする
+function cssPointerEventsAuto() {
+  for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
+    for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
+      document.getElementById(x + '-' + y).style.pointerEvents="auto";
+    }
+  }
 }

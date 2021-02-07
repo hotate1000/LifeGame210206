@@ -6,7 +6,7 @@ function main() {
   drawBlocks();
   preparationBlockColor();
   clickChangeBlock();
-
+  a();
   //進むボタン
   $('#next').on("click", function() {
     clickNextButton();
@@ -18,21 +18,28 @@ function main() {
       clickNextButton();
     },700);
     document.getElementById('next').disabled = true;
-    $('#blocks>tr>td').off("click");
+    document.getElementById('automatic').disabled = true;
+    cssPointerEventsNone();
+    //.ofにするとrestorationSet()実行時、clickChangeBlock()が2連続で反応する。
+    //上記対策のため、cssPointerEventsNone()、cssPointerEventsAuto()で対応する。
     $('#automatic').css("background-color","rgb(146, 230, 255)");
   });
 
   //停止ボタン
   $('#stop').on("click", function() {
-    clearInterval(timer);
-    clickChangeBlock();
-    restorationButton();
-  })
+    restorationSet();
+  });
 
   //削除ボタン
   $('#reset').on("click", function() {
-    clearInterval(timer);
-    restorationButton();
-    main();
+    clickResetButton();
+    restorationSet();
   });
+}
+
+//自動ボタン選択 → 別ボタン選択、画面復旧
+function restorationSet() {
+  clearInterval(timer);
+  cssPointerEventsAuto();
+  restorationButton();
 }
