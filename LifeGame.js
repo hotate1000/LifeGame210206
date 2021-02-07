@@ -1,5 +1,4 @@
 ////設定用ファイル、実行用は「LifeGameMain」
-
 'use strict';
 //ブロック量を指定
 const BLOCK_WIDTH_AMOUNT  = 30;
@@ -9,11 +8,7 @@ let generation = [];
 //自動用
 let timer;
 let count = 0;
-let generationCount = 1;
-
-function a() {
-  $('#main_generation').html(generationCount + "世代目");
-}
+var generationCount = 1;
 
 //ブロックの描画
 function drawBlocks() {
@@ -42,14 +37,6 @@ function clickChangeBlock() {
   });
 } 
 
-//次の世代へ１つ進む
-function clickNextButton() {
-  decideNextBlockColor();
-  drawBlocksColor(); 
-  generationCount++;
-  a();
-}
-
 //世代変更時のブロック色判定用の準備
 function preparationBlockColor() {
   for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
@@ -60,6 +47,19 @@ function preparationBlockColor() {
     }
     generation.push(blockY);
   }
+}
+
+//次の世代へ１つ進む
+function clickNextButton() {
+  decideNextBlockColor();
+  drawBlocksColor(); 
+  generationCount++;
+  generationDisplay();
+}
+
+//世代数表示用
+function generationDisplay() {
+  $('#main_generation').html(generationCount + "世代目");
 }
 
 //ブロックの色から、次の世代のブロック色を決める
@@ -157,20 +157,18 @@ function drawBlocksColor() {
   }
 }
 
+//自動ボタン選択 → 別ボタン選択、画面復旧
+function restorationSet() {
+  clearInterval(timer);
+  restorationButton();
+  cssPointerEventsAuto();
+}
+
 //自動ボタン選択 → 別ボタン選択、ボタン機能復旧
 function restorationButton() {
   document.getElementById('next').disabled = false;
   document.getElementById('automatic').disabled = false;
   $('#automatic').css("background-color","rgb(230, 230, 230)");
-}
-
-//リセットボタン
-function clickResetButton() {
-  for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
-    for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
-      document.getElementById(x + '-' + y).style.backgroundColor="rgb(255, 255, 255)";
-    }
-  }
 }
 
 //自動ボタン選択時、ブロックのクリックを不可にする
@@ -189,4 +187,15 @@ function cssPointerEventsAuto() {
       document.getElementById(x + '-' + y).style.pointerEvents="auto";
     }
   }
+}
+
+//リセットボタン
+function clickResetButton() {
+  for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
+    for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
+      document.getElementById(x + '-' + y).style.backgroundColor="rgb(255, 255, 255)";
+    }
+  }
+  generationCount = 1;
+  generationDisplay();
 }

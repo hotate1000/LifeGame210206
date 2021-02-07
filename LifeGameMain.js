@@ -1,12 +1,11 @@
 ////設定用ファイルは「LifeGame」
-
 main();
 
 function main() {
   drawBlocks();
   preparationBlockColor();
   clickChangeBlock();
-  a();
+  generationDisplay();
   //進むボタン
   $('#next').on("click", function() {
     clickNextButton();
@@ -16,7 +15,7 @@ function main() {
   $('#automatic').on("click", function() {
     timer = setInterval(function() { 
       clickNextButton();
-    },700);
+    },300);
     document.getElementById('next').disabled = true;
     document.getElementById('automatic').disabled = true;
     cssPointerEventsNone();
