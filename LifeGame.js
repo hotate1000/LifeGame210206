@@ -8,7 +8,7 @@ let generation = [];
 //自動用
 let timer;
 let count = 0;
-var generationCount = 1;
+let generationCount = 1;
 
 //ブロックの描画
 function drawBlocks() {
@@ -155,13 +155,6 @@ function drawBlocksColor() {
         generation[y][x] = false;
     }
   }
-}
-
-//自動ボタン選択 → 別ボタン選択、画面復旧
-function restorationSet() {
-  clearInterval(timer);
-  restorationButton();
-  cssPointerEventsAuto();
 }
 
 //自動ボタン選択 → 別ボタン選択、ボタン機能復旧
