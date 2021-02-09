@@ -66,18 +66,13 @@ function generationDisplay() {
 function decideNextBlockColor() {
   for(let y = 0; y < BLOCK_HEIGHT_AMOUNT; y++) {
     for(let x = 0; x < BLOCK_WIDTH_AMOUNT; x++) {
-      if($( '#' + x + '-' + y ).css("background-color") == "rgb(255, 255, 255)"){
-        judgmentWhiteBlockColor(x,y);
-      }
-      else if($( '#' + x + '-' + y ).css("background-color") == "rgb(0, 0, 0)"){
-        judgmentBlackBlockColor(x,y);
-      }
+      judgmentBlockColor(x,y);
     }
   }
 }
 
-//白ブロック、次の世代のブロック色決定
-function judgmentWhiteBlockColor(x,y) {
+//次の世代のブロック色決定
+function judgmentBlockColor(x,y) {
   // let count = 0;
   if($( '#' + (x - 1) + '-' + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
@@ -103,41 +98,12 @@ function judgmentWhiteBlockColor(x,y) {
   if($( '#' + (x + 1) + '-' + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
     count++;
   }
-  if(count == 3) {
-    generation[y][x] = true;
+  //白ブロック
+  if($( '#' + x + '-' + y ).css("background-color") == "rgb(255, 255, 255)" && count == 3){
+      generation[y][x] = true;
   }
-  count = 0;
-}
-
-//黒ブロック、次の世代のブロック色決定
-function judgmentBlackBlockColor(x,y) {
-  // let count = 0;
-  if($( '#' + (x - 1) + '-' + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
-    count++;
-  }
-  if($( '#' + (x) + '-' + (y - 1)     ).css("background-color") == "rgb(0, 0, 0)"){
-    count++;
-  }
-  if($( '#' + (x + 1) + '-' + (y - 1) ).css("background-color") == "rgb(0, 0, 0)"){
-    count++;
-  }
-  if($( '#' + (x - 1) + '-' + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
-    count++;
-  }
-  if($( '#' + (x + 1) + '-' + (y)     ).css("background-color") == "rgb(0, 0, 0)"){
-    count++;
-  }
-  if($( '#' + (x - 1) + '-' + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
-    count++;
-  }
-  if($( '#' + (x) + '-' + (y + 1)     ).css("background-color") == "rgb(0, 0, 0)"){
-    count++;
-  }
-  if($( '#' + (x + 1) + '-' + (y + 1) ).css("background-color") == "rgb(0, 0, 0)"){
-    count++;
-  }
-  if(count == 3 || count == 2) {
-    generation[y][x] = true;
+  else if($( '#' + x + '-' + y ).css("background-color") == "rgb(0, 0, 0)" && (count == 3 || count == 2)){
+      generation[y][x] = true;
   }
   count = 0;
 }
